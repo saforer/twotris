@@ -25,6 +25,16 @@ public class MainMenu extends GameScreen {
     }
 
     @Override
+    public void keyDown(int key) {
+        
+    }
+
+    @Override
+    public void keyUp(int key) {
+
+    }
+
+    @Override
     public void update(float dt) {
         if (!started && buttonsPressed()) {
             GameScreenManager.getInstance().moveToScreen(1);

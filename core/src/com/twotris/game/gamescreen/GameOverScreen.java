@@ -30,6 +30,16 @@ public class GameOverScreen extends GameScreen{
     }
 
     @Override
+    public void keyDown(int key) {
+
+    }
+
+    @Override
+    public void keyUp(int key) {
+
+    }
+
+    @Override
     public void render(SpriteBatch sb) {
         String toDisplay = "Game Over, Press Z + X to start again";
         layout.setText(font, toDisplay);

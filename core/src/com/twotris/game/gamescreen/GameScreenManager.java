@@ -22,6 +22,14 @@ public class GameScreenManager {
         currentScreen = new MainMenu(instance);
     }
 
+    public void keyDown(int key) {
+        currentScreen.keyDown(key);
+    }
+
+    public void keyUp (int key) {
+        currentScreen.keyUp(key);
+    }
+
     public void update() {
         //Clear old before new
         Gdx.gl.glClearColor(0,0,0,1);

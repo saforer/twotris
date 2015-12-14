@@ -17,6 +17,11 @@ public class RunningScreen extends GameScreen {
 	Block block;
 	float countDown;
 	BitmapFont font = new BitmapFont();
+	boolean xPressed = false;
+	boolean zPressed = false;
+	boolean xReleased = false;
+	boolean zReleased = false;
+
 
 	public RunningScreen(GameScreenManager gsm) {
 		super(gsm);
@@ -30,19 +35,25 @@ public class RunningScreen extends GameScreen {
 	public void update (float dt) {
 
 
+		boolean rotate = false;
+		boolean rotated = false;
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-			moveBlockLeft();
+		if (Gdx.input.isKeyJustPressed(Input.Keys.Z) && Gdx.input.isKeyPressed(Input.Keys.X)) rotate = true;
+		if (Gdx.input.isKeyPressed(Input.Keys.Z) && Gdx.input.isKeyJustPressed(Input.Keys.X)) rotate = true;
+
+		if (rotate) {
+			rotateBlockButton();
+			rotated = true;
 		}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
+		if (zReleased && !rotated) {
+			moveBlockLeft();
+		} else if (xReleased && !rotated) {
 			moveBlockRight();
 		}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-			rotateBlockButton();
-		}
 
+		controlsClear();
 
 
 		final float count = 1.0f;
@@ -105,6 +116,13 @@ public class RunningScreen extends GameScreen {
 				countDown -= dt;
 			}
 		}
+	}
+
+	void controlsClear() {
+		zReleased = false;
+		zPressed = false;
+		xReleased = false;
+		xPressed = false;
 	}
 
 	void rotateBlockButton() {
@@ -296,5 +314,21 @@ public class RunningScreen extends GameScreen {
 
 	void gameOver() {
 		GameScreenManager.getInstance().moveToScreen(2);
+	}
+
+	public void keyDown(int key) {
+		if (key == 54) {
+			zPressed = true;
+		} else if (key == 52) {
+			xPressed = true;
+		}
+	}
+
+	public void keyUp (int key) {
+		if (key == Input.Keys.Z) {
+			zReleased = true;
+		} else if (key == Input.Keys.X) {
+			xReleased = true;
+		}
 	}
 }

@@ -36,16 +36,16 @@ public class Block {
         switch (b) {
             default:
             case square:
-                shape[0][3] = 1;
-                shape[1][3] = 1;
-                shape[0][2] = 1;
+                shape[1][1] = 1;
                 shape[1][2] = 1;
+                shape[2][1] = 1;
+                shape[2][2] = 1;
                 break;
             case line:
-                shape[0][3] = 2;
-                shape[0][2] = 2;
-                shape[0][1] = 2;
-                shape[0][0] = 2;
+                shape[1][3] = 2;
+                shape[1][2] = 2;
+                shape[1][1] = 2;
+                shape[1][0] = 2;
                 break;
             case t:
                 shape[1][3] = 3;

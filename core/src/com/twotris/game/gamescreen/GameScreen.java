@@ -12,4 +12,7 @@ public abstract class GameScreen {
 	public abstract void init();
 	public abstract void update (float dt);
 	public abstract void render(SpriteBatch sb);
+	public abstract void keyDown(int key);
+	public abstract void keyUp (int key);
+
 }
